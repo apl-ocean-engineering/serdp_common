@@ -17,7 +17,7 @@ struct SimplePingResultInterface : public draw_sonar::AbstractSonarInterface {
     : _ping(ping) {;}
 
   virtual int nBearings() const { return _ping.bearings().size(); }
-  virtual float bearing( int n ) const { return _ping.bearings().at(n); }
+  virtual float bearing( int n ) const { return _ping.bearings().at(n) * M_PI/180; }
 
   virtual int nRanges() const { return _ping.oculusPing()->nRanges; }
   virtual float range( int n ) const { return _ping.oculusPing()->rangeResolution * n; }
