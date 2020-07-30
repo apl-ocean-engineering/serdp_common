@@ -2,6 +2,9 @@ imports:
     fips-googletest:
         git: https://github.com/amarburg/fips-googletest.git
         cond: "FIPS_UNITTESTS"
+    libdraw_sonar:
+        git: https://github.com/apl-ocean-engineering/libdraw_sonar.git
+        branch: master
     liboculus:
         git: https://github.com/apl-ocean-engineering/liboculus.git
         branch: master

@@ -36,7 +36,7 @@ if( FIPS_CONFIG )
   fips_begin_module( serdp_common )
 
     fips_src( lib *.cpp )
-    fips_deps( oculus )
+    fips_deps( oculus draw_sonar )
     fips_libs( ${Boost_LIBRARIES} ${OpenCV_LIBS} )
 
   fips_end_module()
@@ -61,6 +61,7 @@ else()
       liboculus REQUIRED
       g3log_catkin
       active_object
+      draw_sonar
     )
 
     catkin_package(
@@ -94,8 +95,5 @@ else()
         FILES_MATCHING PATTERN "*.hpp" PATTERN "*.h"
         PATTERN ".git" EXCLUDE)
 
-# in your other catkin projects the libraries will be available as:
-# ${serdp_common_INCLUDE_DIRS}
-# ${serdp_common_LIBRARIES}
 
 endif()

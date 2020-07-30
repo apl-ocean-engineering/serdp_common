@@ -5,35 +5,13 @@
 #include <vector>
 
 #include "liboculus/SimplePingResult.h"
+#include "draw_sonar/DataStructures.h"
 
 namespace serdp_common {
 
 using namespace liboculus;
 
-struct SonarPoint {
-  SonarPoint(float _x, float _z) : x(_x), z(_z) { ; }
-  float x;
-  float z;
-};
-
-
-// Abstract class strictly for drawing sonar images
-// Designed as a "common type" between SimplePingResults and ROS ImagingSonarMsg
-struct AbstractSonarInterface {
-
-  virtual int nBearings() const = 0;
-  virtual float bearing( int n ) const = 0;
-
-  virtual int nRanges() const = 0;
-  virtual float range( int n ) const = 0;
-
-  virtual uint8_t intensity( int i ) const  = 0;
-  virtual uint8_t intensity( int b, int r ) const
-    { return intensity( (r * nBearings()) + b ); }
-
-};
-
-struct SimplePingResultInterface : public AbstractSonarInterface {
+struct SimplePingResultInterface : public draw_sonar::AbstractSonarInterface {
 
   SimplePingResultInterface( const SimplePingResult &ping )
     : _ping(ping) {;}
@@ -49,7 +27,5 @@ struct SimplePingResultInterface : public AbstractSonarInterface {
   const SimplePingResult &_ping;
 };
 
-
-SonarPoint bearingRange2Cartesian(float bearing, float range);
 
 } // namespace serdp_common
